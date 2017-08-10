@@ -21,7 +21,7 @@ import {VacancyService} from './vacancy/vacancy.service';
     VacancyComponent
   ],
   imports: [
-    BrowserModule,
+    BrowserModule.withServerTransition({appId: 'ng-ssr'}),
     AppRoutingModule,
     HttpModule,
     ReactiveFormsModule
