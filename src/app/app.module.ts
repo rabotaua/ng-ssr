@@ -3,16 +3,29 @@ import { NgModule } from '@angular/core';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { MainComponent } from './main/main.component';
+import { ListComponent } from './list/list.component';
+import { VacancyComponent } from './vacancy/vacancy.component';
+import './rxjs-imports';
+import {MainService} from './main/main.service';
+import {HttpModule} from '@angular/http';
+import {ReactiveFormsModule} from '@angular/forms';
+import {VacanciesListService} from './shared/vacancies-list.service';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    MainComponent,
+    ListComponent,
+    VacancyComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    HttpModule,
+    ReactiveFormsModule
   ],
-  providers: [],
+  providers: [MainService, VacanciesListService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
