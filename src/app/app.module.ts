@@ -11,6 +11,7 @@ import {MainService} from './main/main.service';
 import {HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {VacanciesListService} from './shared/vacancies-list.service';
+import {VacancyService} from './vacancy/vacancy.service';
 
 @NgModule({
   declarations: [
@@ -25,7 +26,7 @@ import {VacanciesListService} from './shared/vacancies-list.service';
     HttpModule,
     ReactiveFormsModule
   ],
-  providers: [MainService, VacanciesListService],
+  providers: [MainService, VacanciesListService, VacancyService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

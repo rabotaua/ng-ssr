@@ -1,0 +1,35 @@
+<br><br>
+<div class="container">
+  <div class="row">
+    <div class="col-10 offset-1">
+
+      <div *ngIf="loading">
+        <h2>Loading...</h2>
+      </div>
+
+      <div *ngIf="!loading">
+        <h6>Найдено {{vacsService.vacanciesList.total}} вакансий.</h6>
+        <br>
+
+        <div class="list-block" style="margin-bottom: 20px">
+          <div *ngFor="let vac of vacsService.vacanciesList.documents" class="card">
+            <div class="card-block">
+              <h4 class="card-title">{{vac.name}}</h4>
+              <h6 class="card-subtitle mb-2 text-muted">
+                {{vac.companyName}}
+              </h6>
+              <h6 class="card-subtitle mb-2 lead" style="margin-top: 5px;">
+                <span *ngIf="vac.salary">{{vac.salary}} грн, </span>
+                <span>{{vac.cityName}}</span>
+              </h6>
+              <a [routerLink]="['/vacancy', vac.id]" class="btn btn-sm btn-outline-primary">
+                Перейти к странице вакансии
+              </a>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
