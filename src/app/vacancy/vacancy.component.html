@@ -5,6 +5,31 @@
     </div>
     <div *ngIf="vacData">
 
+      <a href="#" (click)="goBack()">
+        ← вернуться к списку вакансий
+      </a>
+
+      <div class="jumbotron">
+        <h1 class="display-7">{{vacData.name}}</h1>
+        <h6 class="mb-2 text-muted">Вакансия добавлена: {{formatDate(vacData.addDate)}} (<span style="color: #999;">{{vacData.dateTxt}}</span>)</h6>
+
+        <p *ngIf="vacData.salary > 0" class="lead">{{vacData.salary}} грн</p>
+        <p class="lead mb-2">{{vacData.cityName}}</p>
+        <hr class="my-4">
+        <p class="text-muted">Компания: {{vacData.companyName}}</p>
+        <p class="text-muted">Контактное лицо: {{vacData.contactPerson}}</p>
+        <hr class="my-4">
+        <div>
+          <div [innerHTML]="vacData.description"></div>
+        </div>
+
+        <br>
+
+        <div class="lead">
+          <button class="btn btn-danger btn-lg">Отправить резюме</button>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>

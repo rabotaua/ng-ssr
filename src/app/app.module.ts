@@ -12,13 +12,15 @@ import {HttpModule} from '@angular/http';
 import {ReactiveFormsModule} from '@angular/forms';
 import {VacanciesListService} from './shared/vacancies-list.service';
 import {VacancyService} from './vacancy/vacancy.service';
+import { NotFoundComponent } from './not-found/not-found.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     MainComponent,
     ListComponent,
-    VacancyComponent
+    VacancyComponent,
+    NotFoundComponent
   ],
   imports: [
     BrowserModule,

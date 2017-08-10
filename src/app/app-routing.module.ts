@@ -4,6 +4,7 @@ import {AppComponent} from './app.component';
 import {MainComponent} from './main/main.component';
 import {ListComponent} from './list/list.component';
 import {VacancyComponent} from './vacancy/vacancy.component';
+import {NotFoundComponent} from './not-found/not-found.component';
 
 
 const routes: Routes = [
@@ -23,6 +24,10 @@ const routes: Routes = [
   {
     path: 'vacancy/:id',
     component: VacancyComponent
+  },
+  {
+    path: '**',
+    component: NotFoundComponent
   }
 ];
 

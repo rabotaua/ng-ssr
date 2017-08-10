@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from '@angular/router';
 import {VacancyService} from './vacancy.service';
+import {Location} from '@angular/common';
+
 
 @Component({
   selector: 'app-vacancy',
@@ -9,7 +11,12 @@ import {VacancyService} from './vacancy.service';
 })
 export class VacancyComponent implements OnInit {
   vacData;
-  constructor(private route: ActivatedRoute, private vacancyService: VacancyService, private router: Router) {
+  constructor(private route: ActivatedRoute, private _location: Location, private vacancyService: VacancyService, private router: Router) {
+  }
+
+  formatDate(date: string) {
+    const tmp = date.split('T');
+    return `${tmp[0]} в ${tmp[1].slice(0, 5)}`;
   }
 
   ngOnInit() {
@@ -23,6 +30,10 @@ export class VacancyComponent implements OnInit {
           }
         });
     });
+  }
+
+  goBack() {
+    this._location.back();
   }
 
 }
