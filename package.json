@@ -8,7 +8,9 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "deploy": "node deploy.js",
+    "prod": "ng b -prod -sm -aot -dop --progress false --vendor-chunk false --deploy-url http://images.cf-rabota.com.ua/ng-ssr/"
   },
   "private": true,
   "dependencies": {
@@ -22,6 +24,7 @@
     "@angular/platform-browser-dynamic": "^4.0.0",
     "@angular/platform-server": "^4.3.3",
     "@angular/router": "^4.0.0",
+    "aws-sdk": "^2.95.0",
     "bootstrap": "^4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.1",
