@@ -11,6 +11,7 @@ import {Location} from '@angular/common';
 })
 export class VacancyComponent implements OnInit {
   vacData;
+
   constructor(private route: ActivatedRoute, private _location: Location, private vacancyService: VacancyService, private router: Router) {
   }
 
@@ -21,6 +22,11 @@ export class VacancyComponent implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe((params) => {
+      if (isNaN(parseInt(params.id, 10))) {
+        this.router.navigate(['/']);
+        return
+      }
+
       this.vacancyService.getVacancyData(params.id || 0)
         .subscribe(vacData => {
           if (!vacData) {
