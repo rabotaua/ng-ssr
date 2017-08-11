@@ -7,6 +7,7 @@
     "start": "ts-node src/server.ts",
     "prestart": "npm run prod && ngc && npm run deploy",
     "build": "ng build",
+    "ssr": "ts-node src/server.ts",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
