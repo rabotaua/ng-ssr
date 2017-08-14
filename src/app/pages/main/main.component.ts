@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {MainService} from './main.service'
 import {FormBuilder, FormControl, Validators} from '@angular/forms'
-import {VacanciesListService} from '../../shared/vacancies-list.service'
-import {Route, Router} from '@angular/router'
 import {Meta, Title} from '@angular/platform-browser'
 
 const selectValidator = (control: FormControl) => {
