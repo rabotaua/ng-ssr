@@ -5,7 +5,7 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node src/server.ts",
-    "prestart": "npm run prod && npm run deploy",
+    "prestart": "npm run prod && ngc",
     "build": "ng build",
     "ssr": "ts-node src/server.ts",
     "test": "ng test",
