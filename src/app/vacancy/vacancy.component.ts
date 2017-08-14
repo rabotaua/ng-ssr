@@ -2,8 +2,7 @@ import {Component, OnInit} from '@angular/core'
 import {ActivatedRoute, Router} from '@angular/router'
 import {VacancyService} from './vacancy.service'
 import {Location} from '@angular/common'
-import {Title} from '@angular/platform-browser/src/browser/title'
-import {Meta} from '@angular/platform-browser'
+import {Meta, Title} from '@angular/platform-browser'
 
 
 @Component({
