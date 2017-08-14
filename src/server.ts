@@ -31,7 +31,7 @@ enableProdMode();
 
 const app = express();
 
-let template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
+const template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
 
 app.engine('html', (_, options, callback) => {
   const opts = { document: lowerStylesDown(template), url: options.req.url };
