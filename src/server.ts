@@ -6,6 +6,15 @@ import { AppServerModuleNgFactory } from '../dist/ngfactory/src/app/app.server.m
 import * as express from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
+import { minify } from 'html-minifier';
+
+const minifyOpts = {
+  collapseInlineTagWhitespace: true,
+  collapseWhitespace: true,
+  minifyCSS: true,
+  minifyJS: true,
+  removeComments: true
+};
 
 const PORT = process.env.PORT || 4000;
 
@@ -19,7 +28,8 @@ app.engine('html', (_, options, callback) => {
   const opts = { document: template, url: options.req.url };
 
   renderModuleFactory(AppServerModuleNgFactory, opts)
-    .then(html => callback(null, html));
+    .then(html => minify(html, minifyOpts))
+    .then(minifiedHtml => callback(null, minifiedHtml));
 });
 
 app.set('view engine', 'html');
