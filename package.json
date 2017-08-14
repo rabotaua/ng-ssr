@@ -5,8 +5,9 @@
   "scripts": {
     "ng": "ng",
     "start": "ts-node src/server.ts",
-    "prestart": "ng build --prod && ngc",
+    "prestart": "npm run prod && ngc && npm run deploy",
     "build": "ng build",
+    "ssr": "ts-node src/server.ts",
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
@@ -26,7 +27,7 @@
     "@angular/platform-server": "^4.3.3",
     "@angular/router": "^4.0.0",
     "aws-sdk": "^2.95.0",
-    "bootstrap": "^4.0.0-alpha.6",
+    "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.4.1",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
