@@ -2,7 +2,7 @@ import {Component, EventEmitter, OnInit, Output} from '@angular/core'
 import {VacanciesListService} from '../../shared/vacancies-list.service'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {MainService} from '../../pages/main/main.service'
-import {Observable} from 'rxjs/Observable'
+import {NavigationExtras, Router} from '@angular/router'
 
 const selectValidator = (control: FormControl) => {
 
@@ -26,9 +26,8 @@ export class SearchFormComponent implements OnInit {
   public form: FormGroup
   public cities: Array<any>
 
-  @Output() vacancies: EventEmitter<any> = new EventEmitter<any>()
-
-  constructor(private service: MainService, private vacanciesService: VacanciesListService, private fb: FormBuilder) {
+  constructor(private router: Router, private service: MainService, private vacanciesService: VacanciesListService,
+              private fb: FormBuilder) {
     this.form = this.fb.group({
       keyword: ['', [Validators.required, Validators.minLength(2)]],
       city: [-1, [Validators.required, selectValidator]]
@@ -41,10 +40,11 @@ export class SearchFormComponent implements OnInit {
 
   submitForm(): void {
     if (this.form.valid) {
-      this.vacanciesService.getVacancies(this.form.value.keyword, this.form.value.city)
-        .subscribe(data => {
-          this.vacancies.emit(data)
-        })
+      const {keyword, city: cityId} = this.form.value
+      const queryParams: NavigationExtras = {
+        queryParams: {keyword, cityId}
+      }
+      this.router.navigate(['vaclist'], queryParams)
     }
   }
 

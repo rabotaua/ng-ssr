@@ -3,7 +3,8 @@ import {Http} from '@angular/http';
 
 @Injectable()
 export class VacanciesListService {
-  vacanciesList;
+  vacanciesList = []
+  total = 0
   constructor(private http: Http) { }
 
   getVacancies(keyWords: string, cityId: string) {
@@ -11,6 +12,7 @@ export class VacanciesListService {
       cityId, keyWords
     }).map(res => res.json()).map(data => {
       this.vacanciesList = data;
+      this.total = data.total
       return data;
     });
   }

@@ -1,8 +1,6 @@
 import {Component, OnInit} from '@angular/core'
 import {MainService} from './main.service'
 import {FormBuilder, FormControl, Validators} from '@angular/forms'
-import {VacanciesListService} from '../../shared/vacancies-list.service'
-import {Route, Router} from '@angular/router'
 import {Meta, Title} from '@angular/platform-browser'
 
 const selectValidator = (control: FormControl) => {
@@ -28,8 +26,7 @@ export class MainComponent implements OnInit {
   total
   currentTime
 
-  constructor(private service: MainService, private fb: FormBuilder,
-              private vacanciesService: VacanciesListService, private router: Router, meta: Meta, title: Title) {
+  constructor(private service: MainService, private fb: FormBuilder, meta: Meta, title: Title) {
     title.setTitle('Home page')
     meta.addTags([
       {
@@ -56,14 +53,4 @@ export class MainComponent implements OnInit {
       city: [-1, [Validators.required, selectValidator]]
     })
   }
-
-  hadleSubmit(data): void {
-    const {total, documents: vacancies} = data
-    this.total = total
-    if (total) {
-      this.router.navigate(['vaclist'])
-    }
-  }
-
-
 }
