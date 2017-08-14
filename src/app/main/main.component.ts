@@ -23,8 +23,9 @@ const selectValidator = (control: FormControl) => {
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  cities
-  form
+  cities;
+  form;
+  currentTime;
 
   constructor(private service: MainService, private fb: FormBuilder,
               private vacanciesService: VacanciesListService, private router: Router, meta: Meta, title: Title) {
@@ -46,6 +47,8 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentTime = (new Date()).toString().split(' ');
+
     this.service.getCitiesDict().subscribe(data => this.cities = data)
 
     this.form = this.fb.group({
