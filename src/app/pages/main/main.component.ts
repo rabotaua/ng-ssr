@@ -26,6 +26,7 @@ export class MainComponent implements OnInit {
   cities
   form
   total
+  currentTime
 
   constructor(private service: MainService, private fb: FormBuilder, meta: Meta, title: Title) {
     title.setTitle('Home page')
@@ -46,6 +47,7 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.currentTime = (new Date).toString().split(' ')
     this.service.getCitiesDict().subscribe(data => this.cities = data)
 
     this.form = this.fb.group({

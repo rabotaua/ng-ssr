@@ -29,6 +29,8 @@
     "aws-sdk": "^2.95.0",
     "bootstrap": "4.0.0-alpha.6",
     "core-js": "^2.4.1",
+    "express": "^4.15.4",
+    "html-minifier": "^3.5.3",
     "rxjs": "^5.4.1",
     "zone.js": "^0.8.14"
   },

@@ -1,3 +1,13 @@
 <div class="container" style="margin-top: 100px">
     <app-search-form></app-search-form>
+    <app-search-form (vacancies)="hadleSubmit($event)"></app-search-form>
+  <div style="margin-top: 20px; padding: 20px; font-size: 2em;" class="alert-warning" *ngIf="total === 0">
+    No results have been found for your request
+  </div>
+  <h4 class="text-center" style="margin-top: 100px;">
+    {{currentTime[1]}}
+    {{currentTime[2]}}
+    {{currentTime[3]}}
+    {{currentTime[4]}}
+  </h4>
 </div>
