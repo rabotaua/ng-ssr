@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {VacanciesListService} from '../../shared/vacancies-list.service'
 import {Meta, Title} from '@angular/platform-browser'
-import {ActivatedRoute, Params} from '@angular/router'
+import {ActivatedRoute, Params, Router} from '@angular/router'
 
 @Component({
   selector: 'app-list',
@@ -11,7 +11,8 @@ import {ActivatedRoute, Params} from '@angular/router'
 export class ListComponent implements OnInit {
   loading = false
 
-  constructor(private activatedRoute: ActivatedRoute, public vacsService: VacanciesListService, title: Title, meta: Meta) {
+  constructor(private activatedRoute: ActivatedRoute, private router: Router,
+              public vacsService: VacanciesListService, title: Title, meta: Meta) {
     title.setTitle('Vacancies list page')
     meta.addTags([
       {
@@ -31,20 +32,18 @@ export class ListComponent implements OnInit {
 
   ngOnInit() {
     this.activatedRoute.queryParams.subscribe((params: Params) => {
-      const {keyword, cityId} = params
+      const {keyword, cityId} = params;
+
       if (!keyword || !cityId) {
-        this.loading = true
-        this.vacsService.getVacancies('', '0').subscribe(
-          () => {
-            this.loading = false
-          }
-        )
-      } else {
-        this.vacsService.getVacancies(keyword, cityId)
-          .subscribe(data => {
-            console.log(data)
-          })
+        this.router.navigate(['/404'])
+        return;
       }
+
+      this.loading = true;
+      this.vacsService.getVacancies(keyword, cityId)
+        .subscribe(data => {
+          this.loading = false;
+        });
     })
   }
 

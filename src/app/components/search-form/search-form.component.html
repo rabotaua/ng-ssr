@@ -1,11 +1,19 @@
-<form novalidate class="form-inline col-12" [formGroup]="form" (ngSubmit)="submitForm()">
-  <input formControlName="keyword" class="form-control mr-sm-2 col-5 form-control-lg" type="text" placeholder="Ключевые слова (например, angular2)">
-  <select formControlName="city" [disabled]="!cities" class="form-control mr-sm-2 col-4 form-control-lg">
-    <option selected value="-1">Выберите регион...</option>
-    <option selected value="0">Все регионы</option>
-    <option *ngFor="let city of cities" [value]="city.id">
-      {{ city.ru }}
-    </option>
-  </select>
-  <button [disabled]="form.invalid" class="btn btn-lg btn-outline-danger my-2 my-sm-0 col-2" type="submit">НАЙТИ</button>
+<form novalidate [formGroup]="form" (ngSubmit)="submitForm()">
+  <div class="form-row">
+    <div class="col col-lg-5 col-md-12 col-sm-12 col-xs-12">
+      <input formControlName="keyword" class="form-control" type="text" placeholder="Ключевые слова (например, angular2)">
+    </div>
+    <div class="col col-lg-5 col-md-12 col-sm-12 col-xs-12">
+      <select formControlName="city" [disabled]="!cities" class="form-control">
+        <option selected value="-1">Выберите регион...</option>
+        <option selected value="0">Все регионы</option>
+        <option *ngFor="let city of cities" [value]="city.id">
+          {{ city.ru }}
+        </option>
+      </select>
+    </div>
+    <div class="col col-lg-2 col-md-12 col-sm-12 col-xs-12">
+      <button [disabled]="form.invalid" class="btn btn-lg btn-block btn-outline-danger" type="submit">НАЙТИ</button>
+    </div>
+  </div>
 </form>

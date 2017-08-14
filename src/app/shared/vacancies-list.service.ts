@@ -11,7 +11,7 @@ export class VacanciesListService {
     return this.http.post('https://api.rabota.ua/vacancy/search', {
       cityId, keyWords
     }).map(res => res.json()).map(data => {
-      this.vacanciesList = data;
+      this.vacanciesList = data.documents;
       this.total = data.total
       return data;
     });
