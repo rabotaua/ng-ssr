@@ -7,6 +7,7 @@ import * as express from 'express';
 import { readFileSync } from 'fs';
 import { join } from 'path';
 import { minify } from 'html-minifier';
+const cheerio = require('cheerio')
 
 const minifyOpts = {
   collapseInlineTagWhitespace: true,
@@ -16,16 +17,24 @@ const minifyOpts = {
   removeComments: true
 };
 
+const lowerStylesDown = (html) => {
+  const $ = cheerio.load(html)
+  const styles = $('link[href*=".bundle.css"]');
+  $(styles).remove();
+  $('script[src*="inline."]').before($(styles).toString());
+  return $.html()
+};
+
 const PORT = process.env.PORT || 4000;
 
 enableProdMode();
 
 const app = express();
 
-const template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
+let template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
 
 app.engine('html', (_, options, callback) => {
-  const opts = { document: template, url: options.req.url };
+  const opts = { document: lowerStylesDown(template), url: options.req.url };
 
   renderModuleFactory(AppServerModuleNgFactory, opts)
     .then(html => minify(html, minifyOpts))
