@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core'
 import {MainService} from './main.service'
 import {FormBuilder, FormControl, Validators} from '@angular/forms'
-import {VacanciesListService} from '../shared/vacancies-list.service'
+import {VacanciesListService} from '../../shared/vacancies-list.service'
 import {Route, Router} from '@angular/router'
 import {Meta, Title} from '@angular/platform-browser'
 
@@ -23,9 +23,9 @@ const selectValidator = (control: FormControl) => {
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  cities;
-  form;
-  currentTime;
+  cities
+  form
+  total
 
   constructor(private service: MainService, private fb: FormBuilder,
               private vacanciesService: VacanciesListService, private router: Router, meta: Meta, title: Title) {
@@ -47,8 +47,6 @@ export class MainComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.currentTime = (new Date()).toString().split(' ');
-
     this.service.getCitiesDict().subscribe(data => this.cities = data)
 
     this.form = this.fb.group({
@@ -57,15 +55,13 @@ export class MainComponent implements OnInit {
     })
   }
 
-  submitForm() {
-    if (this.form.valid) {
-      this.vacanciesService.getVacancies(this.form.value.keyword, this.form.value.city)
-        .subscribe(data => {
-          if (data && data.total > 0) {
-            this.router.navigate(['vaclist'])
-          }
-        })
+  hadleSubmit(data): void {
+    const {total, documents: vacancies} = data
+    this.total = total
+    if (total) {
+      this.router.navigate(['vaclist'])
     }
   }
+
 
 }

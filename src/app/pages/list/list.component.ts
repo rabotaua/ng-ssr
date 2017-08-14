@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core'
-import {VacanciesListService} from '../shared/vacancies-list.service'
+import {VacanciesListService} from '../../shared/vacancies-list.service'
 import {Meta, Title} from '@angular/platform-browser'
 
 @Component({
