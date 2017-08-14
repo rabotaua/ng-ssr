@@ -27,8 +27,7 @@ export class MainComponent implements OnInit {
   form
   total
 
-  constructor(private service: MainService, private fb: FormBuilder,
-              private vacanciesService: VacanciesListService, private router: Router, meta: Meta, title: Title) {
+  constructor(private service: MainService, private fb: FormBuilder, meta: Meta, title: Title) {
     title.setTitle('Home page')
     meta.addTags([
       {
@@ -54,14 +53,4 @@ export class MainComponent implements OnInit {
       city: [-1, [Validators.required, selectValidator]]
     })
   }
-
-  hadleSubmit(data): void {
-    const {total, documents: vacancies} = data
-    this.total = total
-    if (total) {
-      this.router.navigate(['vaclist'])
-    }
-  }
-
-
 }
