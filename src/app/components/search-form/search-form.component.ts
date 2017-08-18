@@ -1,8 +1,9 @@
-import {Component, EventEmitter, OnInit, Output} from '@angular/core'
+import { Component, EventEmitter, OnInit, Output, Inject, PLATFORM_ID } from '@angular/core'
 import {VacanciesListService} from '../../shared/vacancies-list.service'
 import {FormBuilder, FormControl, FormGroup, Validators} from '@angular/forms'
 import {MainService} from '../../pages/main/main.service'
 import {NavigationExtras, Router} from '@angular/router'
+import { isPlatformBrowser } from "@angular/common";
 
 const selectValidator = (control: FormControl) => {
 
@@ -27,7 +28,7 @@ export class SearchFormComponent implements OnInit {
   public cities: Array<any>
 
   constructor(private router: Router, private service: MainService, private vacanciesService: VacanciesListService,
-              private fb: FormBuilder) {
+              private fb: FormBuilder, @Inject(PLATFORM_ID) private platformId: Object) {
     this.form = this.fb.group({
       keyword: ['', [Validators.required, Validators.minLength(2)]],
       city: [-1, [Validators.required, selectValidator]]
@@ -35,7 +36,9 @@ export class SearchFormComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.service.getCitiesDict().subscribe(data => this.cities = data)
+    if (isPlatformBrowser(this.platformId)) {
+      this.service.getCitiesDict().subscribe(data => this.cities = data)
+    }
   }
 
   submitForm(): void {
