@@ -168,9 +168,13 @@ const template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toStr
 
 app.engine('html', (_, options, callback) => {
   const opts = { document: lowerStylesDown(template), url: options.req.url };
+  const start = Date.now()
 
   renderModuleFactory(AppServerModuleNgFactory, opts)
-    .then(html => minify(html, minifyOpts))
+    .then(html => {
+      console.log('SSR: ' + (Date.now() - start))
+      return minify(html, minifyOpts)
+    })
     .then(minifiedHtml => callback(null, minifiedHtml));
 });
 
