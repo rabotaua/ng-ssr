@@ -26,7 +26,7 @@ const lowerStylesDown = (html) => {
   return $.html()
 };
 
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 8080;
 
 enableProdMode();
 
