@@ -8,6 +8,7 @@ import { readFileSync } from 'fs';
 import { join } from 'path';
 import { minify } from 'html-minifier';
 const cheerio = require('cheerio')
+const cache = require('express-cache-headers')
 
 const minifyOpts = {
   collapseInlineTagWhitespace: true,
@@ -30,6 +31,7 @@ const PORT = process.env.PORT || 4000;
 enableProdMode();
 
 const app = express();
+app.use(cache(60));
 
 const template = readFileSync(join(__dirname, '..', 'dist', 'index.html')).toString();
 
