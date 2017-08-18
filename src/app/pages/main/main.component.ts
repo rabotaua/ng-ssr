@@ -21,7 +21,6 @@ const selectValidator = (control: FormControl) => {
   styleUrls: ['./main.component.css']
 })
 export class MainComponent implements OnInit {
-  cities
   form
   total
   currentTime
@@ -46,7 +45,6 @@ export class MainComponent implements OnInit {
 
   ngOnInit() {
     this.currentTime = (new Date).toString().split(' ')
-    this.service.getCitiesDict().subscribe(data => this.cities = data)
 
     this.form = this.fb.group({
       keyword: ['', [Validators.required, Validators.minLength(2)]],
