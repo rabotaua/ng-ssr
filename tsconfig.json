@@ -1,23 +1,18 @@
 {
-  "compileOnSave": false,
   "compilerOptions": {
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
+    "module": "es2015",
     "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
     "target": "es5",
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2016",
-      "dom"
-    ]
+    "sourceMap": true,
+    "experimentalDecorators": true,
+    "emitDecoratorMetadata": true,
+    "skipDefaultLibCheck": true,
+    "skipLibCheck": true, // Workaround for https://github.com/angular/angular/issues/17863. Remove this if you upgrade to a fixed version of Angular.
+    "strict": true,
+    "noImplicitAny": false,
+    "lib": [ "es6", "dom" ],
+    "types": [ "webpack-env" ]
   },
-  "angularCompilerOptions": {
-    "genDir": "./dist/ngfactory",
-    "entryModule": "./src/app/app.module#AppModule"
-  }
+  "exclude": [ "bin", "node_modules" ],
+  "atom": { "rewriteTsconfig": false }
 }
